@@ -1,0 +1,28 @@
+{
+  "name": "cookies",
+  "version": "1.0.0",
+  "description": "web cookies actions",
+  "main": "cookie-retriever.js",
+  "dependencies": {
+    "selenium-webdriver": "^4.0.0-alpha.1",
+    "sqlite3": "^4.0.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ashaffir/cookies-actions.git"
+  },
+  "keywords": [
+    "web",
+    "cookies"
+  ],
+  "author": "Alfred",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ashaffir/cookies-actions/issues"
+  },
+  "homepage": "https://github.com/ashaffir/cookies-actions#readme"
+}
