@@ -15,7 +15,7 @@ const webdriver = require('selenium-webdriver');
 
 const sqlite3 = require('sqlite3').verbose();
 let db = new sqlite3.Database('./db/cookies.db');
-db.run('CREATE TABLE IF NOT EXISTS cookies(domain TEXT, expiry INTEGER, httpOnly TEXT, name TEXT, path TEXT, secure TEXT, value TEXT)');
+db.run('CREATE TABLE IF NOT EXISTS cookies(domain TEXT, expiry INTEGER, httpOnly TEXT, name TEXT PRIMARY KEY, path TEXT, secure TEXT, value TEXT)');
 
 
 const writeDB = (domain, expiry, httpOnly, name, path, secure, value) => {
@@ -32,6 +32,7 @@ const writeDB = (domain, expiry, httpOnly, name, path, secure, value) => {
 }
 
 const closeDB = () => {
+    console.log('Closing the DB!');
     db.close()
 }
 
@@ -46,9 +47,10 @@ const printCookies = () => {
     console.log("Retrieving coockies...");
 
     driver.manage().getCookies().then( (loadedCookies) =>{
-        console.log(loadedCookies);
+        // console.log(loadedCookies); // Display the content of the cookies
+
         for (let i=0; i<= loadedCookies.length-1;i++) {
-            console.log('printing cookie loaded : '+loadedCookies[i]);
+            // console.log('printing cookie loaded : '+loadedCookies[i]);
             writeDB(
                 loadedCookies[i]['domain'],
                 loadedCookies[i]['expiry'],
@@ -58,7 +60,8 @@ const printCookies = () => {
                 loadedCookies[i]['secure'],
                 loadedCookies[i]['value']
             );
-        }
+        };
+        closeDB();
         });
 }
 
